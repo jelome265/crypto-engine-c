@@ -1,0 +1,9 @@
+*.o
+*.out
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+.DS_Store
+bazel-*
