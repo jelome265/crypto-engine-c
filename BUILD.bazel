@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@io_bazel_rules_docker//cc:image.bzl", "cc_image")
+
+sh_binary(
+    name = "commit",
+    srcs = ["scripts/bazel_commit.sh"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "hsm-wrapper-lib",
+    srcs = ["src/hsm_wrapper.c"],
+    hdrs = ["src/hsm_wrapper.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_binary(
+    name = "hsm-cli",
+    srcs = ["src/main.c"],
+    deps = [":hsm-wrapper-lib"],
+)
+
+cc_image(
+    name = "image",
+    binary = ":hsm-cli",
+    visibility = ["//visibility:public"],
+)
+
+

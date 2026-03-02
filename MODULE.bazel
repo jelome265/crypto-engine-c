@@ -1,0 +1,3 @@
+module(name = "crypto_engine_c", version = "1.0.0")
+
+bazel_dep(name = "rules_shell", version = "0.1.0")
